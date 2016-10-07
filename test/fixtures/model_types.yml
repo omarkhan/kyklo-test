@@ -1,0 +1,6 @@
+countach:
+  model: lamborghini
+  name: Countach
+  model_type_slug: countach
+  model_type_code: C
+  base_price: 100000

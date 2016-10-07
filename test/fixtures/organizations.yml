@@ -1,0 +1,5 @@
+evil:
+  name: evil
+  public_name: Evil Corp
+  organization_type: dealer
+  pricing_policy: 1  # fixed pricing

@@ -2,18 +2,8 @@ require 'test_helper'
 
 class OrganizationTest < ActiveSupport::TestCase
   setup do
-    @organization = Organization.create! name: 'evil',
-                                         public_name: 'Evil Corp',
-                                         organization_type: :dealer,
-                                         pricing_policy: :fixed_pricing
-    @model = Model.create! organizations: [@organization],
-                           name: 'Lamborghini',
-                           model_slug: 'lamborghini'
-    @model_type = ModelType.create! model: @model,
-                                    name: 'Countach',
-                                    model_type_slug: 'countach',
-                                    model_type_code: 'test',
-                                    base_price: 100_000
+    @organization = Organization.take!
+    @model_type = ModelType.take!
   end
 
   test 'flexible_pricing' do
