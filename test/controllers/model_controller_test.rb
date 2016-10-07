@@ -65,6 +65,12 @@ class ModelControllerTest < ActionController::TestCase
     assert_response 422
   end
 
+  test 'create a new model type: duplicate model_type_slug' do
+    @params[:model_type_slug] = 'countach'
+    post :create, @params
+    assert_response 422
+  end
+
   test 'list model types' do
     VCR.use_cassette('github') do
       get :list, organization: 'evil', model_slug: 'lamborghini'
