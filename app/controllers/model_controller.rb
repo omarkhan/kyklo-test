@@ -1,4 +1,5 @@
 class ModelController < ApplicationController
+  before_action :authenticate
   before_action :load_organization_and_model
 
   rescue_from ActiveRecord::RecordNotFound,       with: :not_found
@@ -41,6 +42,12 @@ class ModelController < ApplicationController
   end
 
   private
+
+  def authenticate
+    authenticate_or_request_with_http_token do |token|
+      token == 'kyklo'
+    end
+  end
 
   def load_organization_and_model
     @organization = Organization.find_by! name: params[:organization]

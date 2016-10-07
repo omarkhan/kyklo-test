@@ -2,6 +2,7 @@ require 'test_helper'
 
 class ModelControllerTest < ActionController::TestCase
   setup do
+    @request.headers['Authorization'] = 'Token token=kyklo'
     @params = {
       organization: 'evil',
       model_slug: 'lamborghini',
@@ -25,6 +26,12 @@ class ModelControllerTest < ActionController::TestCase
       }
     }
     assert_equal ModelType.count, 2
+  end
+
+  test 'create a new model type: invalid token' do
+    @request.headers['Authorization'] = 'Token token=invalid'
+    post :create, @params
+    assert_response 401
   end
 
   test 'create a new model type: organization not found' do
